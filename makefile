@@ -1,14 +1,14 @@
-SRCS		= server.c client.c libft/*.c
+SERVER		= server.c
 
-OBJS		= *.o
+CLIENT		= client.c
 
-NAME		= minitalk.a
+LIBFT		= libft/libft.a
 
 CC			= gcc
 
-RM			= rm -rf
+RM			= rm -rf 
 
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra 
 
 all:		${NAME}
 
@@ -16,6 +16,11 @@ ${NAME}:	${OBJS}
 			make -C libft
 			${CC} ${CFLAGS} -c ${SRCS}
 			ar rcs ${NAME} ${OBJS}
+
+server:		
+			make -C libft
+			${CC} ${CFLAGS} -c ${SRCS}
+			ar rcs ${}
 
 clean:
 			${RM} ${OBJS}
