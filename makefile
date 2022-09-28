@@ -1,6 +1,6 @@
-SERVER		= server.c
+SERVER		= server
 
-CLIENT		= client.c
+CLIENT		= client
 
 LIBFT		= libft/libft.a
 
@@ -10,23 +10,22 @@ RM			= rm -rf
 
 CFLAGS		= -Wall -Werror -Wextra 
 
-all:		${NAME}
+all:		${SERVER} ${CLIENT}
 
-${NAME}:	${OBJS}
-			make -C libft
-			${CC} ${CFLAGS} -c ${SRCS}
-			ar rcs ${NAME} ${OBJS}
+${LIBFT}:	
+			make -C ${LIBFT}
 
-server:		
-			make -C libft
-			${CC} ${CFLAGS} -c ${SRCS}
-			ar rcs ${}
+${SERVER}:	${LIBFT}
+			${CC} ${CFLAGS} ${SERVER}.c ${LIBFT} -o ${SERVER}
+
+${CLIENT}:	${LIBFT}
+			${CC} ${CFLAGS} ${CLIENT}.c ${LIBFT} -o ${CLIENT}
 
 clean:
-			${RM} ${OBJS}
+			${RM} *.o
 
 fclean:		clean
-			${RM} ${NAME}
+			${RM} client server
 		
 re:			fclean all
 
